@@ -1,0 +1,22 @@
+{
+    "name": "mrvirus/php-mvc-framework",
+    "autoload": {
+        "psr-4": {
+            "Mrvirus\\PhpMvcFramework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jackson457",
+            "email": "jamejacksonj@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "app\\" : "./"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.5"
+    }
+}
