@@ -1,4 +1,4 @@
-# php_mvc_framework
+# php MVC Authentication System OOP
 ## Installation
 1.Clone the repo<br>
 2.Create a new database<br>
