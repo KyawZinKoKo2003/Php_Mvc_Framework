@@ -4,8 +4,15 @@ namespace app\core;
 
 use app\core\db\DbModel;
 use app\core\db\Database;
+use app\models\User;
+
 class Application
 {
+  const EVENT_BEFORE_REQUEST = 'beforeRequest';
+  const EVENT_AFTER_REQUEST = 'afterRequest';
+
+  protected array $eventListeners = [];
+
     public static string $rootPath;
     public string $userClass;
     public string $layout='main';
@@ -18,8 +25,10 @@ class Application
     public static Application $app;
     public Controller $controller;
     public View $view;
-    public function __construct($path,array $config)
+    public function __construct($path, $config)
     {
+       
+       
         self::$rootPath = $path;
         self::$app = $this;
         $this->request = new Request();
@@ -48,6 +57,7 @@ class Application
       try {
           echo $this->router->resolve();
       } catch (\Exception $e) {
+        
         $this->response->setStatusCode($e->getCode());
         echo $this->view->renderView('_error',[
           'errors' =>$e
@@ -72,5 +82,10 @@ class Application
     public function logout(){
       $this->user=null;
       $this->session->remove('user');
+    }
+
+    public function on($eventName, $callback)
+    {
+        $this->eventListeners[$eventName][] = $callback;
     }
 }

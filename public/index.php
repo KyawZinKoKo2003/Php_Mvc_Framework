@@ -16,6 +16,7 @@ $config=[
     'password'=>$_ENV['DB_PASSWORD']
   ]
 ];
+
 $app = new Application(dirname(__DIR__),$config);
 $app->router->get('/', [ContactController::class,'home']);
 $app->router->get('/contact',[ContactController::class,'contact']);
